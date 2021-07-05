@@ -1,0 +1,194 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Montserrat", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  background-image: url(./Live-Wave-Background.svg);
+}
+h1 {
+  font-size: 2.2rem;
+  margin: 16px;
+  padding: 10px;
+  user-select: none;
+  color: rgb(228, 206, 8);
+
+  background: rgba(30, 33, 42, 0.1);
+  box-shadow: 0 8px 30px 0px rgba(31, 38, 135, 0.541);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.container {
+  width: 90vw;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+canvas {
+  border-radius: 20px;
+  box-shadow: 0 0 10px 2px rgb(7, 173, 223);
+  background-color: white;
+}
+
+.tools {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.colors {
+  width: 180px;
+  height: 100%;
+  border-radius: 20px;
+  display: flex;
+  background-color: rgb(255, 255, 255);
+  align-items: center;
+  position: relative;
+}
+
+.color {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+
+  margin: 0 5px;
+  cursor: pointer;
+  text-align: center;
+}
+.color:hover {
+  border: 2px solid rgb(207, 14, 198);
+}
+
+.nxt-btn {
+  width: 30px;
+  height: 60px;
+  position: relative;
+}
+
+.more-color {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  position: absolute;
+  align-items: center;
+  background: no-repeat right 8px center url(./image/next.svg);
+  background-size: 22px;
+  border-radius: 0 20px 20px 0;
+  transition: width 0.2s linear;
+  background-color: rgb(255, 255, 255);
+}
+
+.more {
+  width: 230px;
+}
+
+.middle {
+  width: 500px;
+  height: 100%;
+  border-radius: 20px;
+  display: flex;
+  background-color: rgb(255, 255, 255);
+  justify-content: center;
+  align-items: center;
+}
+
+.color-picker {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  margin: 0 14px;
+}
+input[type="number"] {
+  margin: 0 14px;
+  width: 40px;
+  height: 40px;
+  /* appearance: square-button; */
+}
+input[type="number"]::-webkit-inner-spin-button {
+  opacity: 1;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: inner-spin-button !important;
+  width: 25px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+}
+button {
+  width: 40px;
+  height: 60px;
+  margin: 0 10px;
+  background-color: aquamarine;
+}
+
+.end {
+  width: 180px;
+  height: 60px;
+  text-align: center;
+  background: white;
+  border-radius: 20px;
+}
+
+.export,
+.clr,
+.undo,
+.redo,
+.erase,
+.pencil {
+  background-image: url(./image/export.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+  opacity: 0.5;
+  background-size: 35px;
+  cursor: pointer;
+}
+.clr {
+  background-image: url(./image/trash.svg);
+}
+.undo {
+  background-image: url(./image/undo.svg);
+}
+.erase {
+  background-image: url(./image/eraser.svg);
+}
+.redo {
+  background-image: url(./image/redo.svg);
+}
+.pencil {
+  background-image: url(./image/pencil.svg);
+}
+
+.pencil:hover,
+.export:hover,
+.clr:hover,
+.undo:hover,
+.redo:hover,
+.erase:hover {
+  opacity: 1;
+  border-bottom: 5px solid rgb(15, 15, 14);
+}
+
+.click {
+  opacity: 1;
+  border-bottom: 5px solid rgb(15, 15, 14);
+}
+
+.cur {
+  cursor: url("./image/pencil.svg"), crosshair;
+}
