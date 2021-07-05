@@ -15,11 +15,10 @@ body {
 }
 h1 {
   font-size: 2.2rem;
-  margin: 16px;
+  margin: 10px;
   padding: 10px;
   user-select: none;
   color: rgb(228, 206, 8);
-
   background: rgba(30, 33, 42, 0.1);
   box-shadow: 0 8px 30px 0px rgba(31, 38, 135, 0.541);
   border-radius: 10px;
@@ -28,12 +27,13 @@ h1 {
 
 .container {
   width: 90vw;
-  height: 90vh;
+  height: 87vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 }
 canvas {
+  height: 100%;
   border-radius: 20px;
   box-shadow: 0 0 10px 2px rgb(7, 173, 223);
   background-color: white;
@@ -45,7 +45,7 @@ canvas {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 15px;
+  margin-top: 10px;
 }
 
 .colors {
@@ -112,8 +112,9 @@ canvas {
 }
 input[type="number"] {
   margin: 0 14px;
-  width: 40px;
+  width: 50px;
   height: 40px;
+  padding: 3px;
   /* appearance: square-button; */
 }
 input[type="number"]::-webkit-inner-spin-button {
@@ -128,6 +129,7 @@ input[type="number"]::-webkit-inner-spin-button {
   right: 0;
   height: 100%;
 }
+
 button {
   width: 40px;
   height: 60px;
@@ -149,7 +151,6 @@ button {
 .redo,
 .erase,
 .pencil {
-  background-image: url(./image/export.svg);
   background-repeat: no-repeat;
   background-position: center;
   border: none;
@@ -157,6 +158,10 @@ button {
   opacity: 0.5;
   background-size: 35px;
   cursor: pointer;
+}
+.export {
+  background-image: url(./image/export.svg);
+  background-size: 30px;
 }
 .clr {
   background-image: url(./image/trash.svg);

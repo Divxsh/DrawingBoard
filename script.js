@@ -1,18 +1,16 @@
 const canvas = document.getElementById("mycanvas");
 let cal = window.innerWidth - canvas.clientWidth;
+let cal1 = window.innerHeight - canvas.clientHeight;
 canvas.width = window.innerWidth - cal;
-// console.log(window.innerWidth);
-canvas.height = 540;
+canvas.height = window.innerHeight - cal1;
 
 function Resize() {
-  let cal = window.innerWidth - canvas.clientWidth;
   canvas.width = window.innerWidth - cal;
-  canvas.height = 540;
-  // console.log(window.innerWidth);
+  canvas.height = window.innerHeight - cal1;
+  location.reload();
 }
 
 window.addEventListener("resize", Resize);
-
 const ctx = canvas.getContext("2d");
 ctx.fillStyle = "white";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -22,11 +20,9 @@ let color = "black";
 var lw = 1;
 var undoStack = [],
   redoStack = [];
-ctx.lineCap = "round";
-ctx.lineJoin = "round";
 
 canvas.addEventListener("touchstart", start, false);
-canvas.addEventListener("touchmove", draw, false);
+canvas.addEventListener("touchmove", (e) => draw(e.touches[0]), false);
 canvas.addEventListener("touchend", stop, false);
 
 canvas.addEventListener("mousedown", start, false);
@@ -37,9 +33,7 @@ canvas.addEventListener("mouseout", stop, false);
 //range slider
 var slider = document.getElementById("slider");
 slider.addEventListener("input", function () {
-  // var p_range = document.getElementById("num_range");
   ctx.lineWidth = slider.value;
-  // p_range.innerHTML = slider.value;
 });
 
 function start(e) {
@@ -56,7 +50,6 @@ function start(e) {
     width: ctx.lineWidth,
     type: "begin",
   };
-  // Push the properties of initial point into the undo stack
   undoStack.push(point);
   e.preventDefault();
 }
@@ -65,6 +58,8 @@ function draw(e) {
   if (isDrawing) {
     const x = e.clientX - canvas.offsetLeft;
     const y = e.clientY - canvas.offsetTop;
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
     ctx.lineTo(x, y);
     ctx.strokeStyle = color;
     ctx.stroke();
@@ -77,7 +72,6 @@ function draw(e) {
       type: "end",
     };
 
-    // Pushing the properties of the current position into the undoStack
     undoStack.push(point);
   }
 }
@@ -85,7 +79,6 @@ function draw(e) {
 function stop(e) {
   if (isDrawing) {
     isDrawing = false;
-    ctx.stroke();
     ctx.closePath();
   }
   e.preventDefault();
@@ -95,6 +88,8 @@ function stop(e) {
 var btn_clr = document.querySelector(".clr");
 btn_clr.addEventListener("click", function () {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+  undoStack = null;
+  redoStack = null;
 });
 
 // Eraser button
@@ -103,8 +98,8 @@ var eraser = document.querySelector(".erase");
 eraser.addEventListener("click", erase);
 function erase() {
   eraser.classList.toggle("click");
-  ctx.lineWidth = "5";
-  slider.value = 5;
+  ctx.lineWidth = "10";
+  slider.value = 10;
   store_color = color;
   color = "white";
   if (pens.classList.contains("click")) {
@@ -131,7 +126,7 @@ function color_change(e) {
 
 let interval;
 
-// Starting undo
+// Undo
 document.querySelector(".undo").addEventListener("mousedown", () => {
   if (undoStack.length > 0) {
     interval = setInterval(() => {
@@ -143,32 +138,27 @@ document.querySelector(".undo").addEventListener("mousedown", () => {
   }
 });
 
-// Ending undo
+// Undo
 document.querySelector(".undo").addEventListener("mouseup", () => {
   clearInterval(interval);
 });
 
-// Redo................
-
-// Starting redo
+// Redo
 document.querySelector(".redo").addEventListener("mousedown", () => {
   if (redoStack.length > 0) {
     interval = setInterval(() => {
       if (redoStack.length === 0) return;
-      // Pop Out the last acrion from undoStack and push it into the redostack
       undoStack.push(redoStack.pop());
       reDraw();
     }, 0);
   }
 });
 
-// Ending redo
 document.querySelector(".redo").addEventListener("mouseup", () => {
   clearInterval(interval);
 });
 
 function reDraw() {
-  // For the first action
   if (undoStack.length === 0) return;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   undoStack.forEach((el) => {
