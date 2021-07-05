@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./pencil.svg" type="image/x-icon">
+    <title>Drawing Board </title>
+</head>
+<link rel="stylesheet" href="./style.css">
+
+<body>
+
+    <h1>Tiger Team Canvas</h1>
+    <div class="container">
+        <canvas id="mycanvas"></canvas>
+        <div class="tools">
+            <div class="colors">
+                <div class="color" onclick="color_change(this)" style="background:red ;"></div>
+                <div class="color" onclick="color_change(this)" style="background:rgb(3, 233, 3) ;"></div>
+                <div class="color" onclick="color_change(this)" style="background:blue ;"></div>
+                <div class="nxt-btn">
+                    <div class="more-color">
+                        <div class=" color" onclick="color_change(this)" style="background:yellow ;"></div>
+                        <div class=" color" onclick="color_change(this)" style="background:pink ;"></div>
+                        <div class=" color" onclick="color_change(this)" style="background:rgb(238, 233, 233) ;"></div>
+                        <div class=" color" onclick="color_change(this)" style="background:black ;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="middle">
+                <input type="color" onchange="color = this.value" value="#ff0000" class="color-picker"
+                    colorpick-eyedropper-active="false">
+                <input type="number" id="slider" min="1" max="100" value="10">
+                <button class="pencil"></button>
+                <button class="erase"></button>
+                <button class="undo"></button>
+                <button class="redo"></button>
+                <button class="clr"></button>
+            </div>
+            <div class="end">
+                <button class="export"></button>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+<script src="./script.js">
+</script>
+
+</html>
