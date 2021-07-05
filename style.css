@@ -11,7 +11,7 @@ body {
   flex-direction: column;
   align-items: center;
   height: 100vh;
-  background-image: url(./Live-Wave-Background.svg);
+  background-image: url(./image/Live-Wave-Background.svg);
 }
 h1 {
   font-size: 2.2rem;
